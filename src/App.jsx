@@ -6,28 +6,39 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
 
+
+
+  async function download() {
+    if (deferredPrompt !== null) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+          setDeferredPrompt(null);
+      }
+    }
+  }
+
   return (
     <>
+      <h1>Pourquoi installer un PWA ?</h1>
+      <div className="">
+       <p>Accès en Or Ligne </p>
+       <p>Plus rapide</p>
+      </div>
+      <h1>Comment installer l'application ?</h1>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <p>regadez à droite de la bare de naviagtion</p>
+        {/* si plus de temps afficher le boutton en fonction du navigateur */}
+        <div><p>cliquez sur :</p><img src="/download.png" alt="download button" /></div>
+        <button onClick={() => {setShow(!show)}}>afficher le tuto ?</button>
+        <div className='modal'>
+          modal montant l'emplacement du bouton
+          en absolut 
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className="intaller">
+        <button onClick={download}>DOWNLOAD</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
